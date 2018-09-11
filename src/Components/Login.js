@@ -5,10 +5,14 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 
+import Background from './Photo/bg1.jpg';
+
+
+
 const Login = ({input, click, Isvalid}) => {
 
 	return (
-		<div className = 'login'> 
+		<div className = 'login' style={{backgroundImage: "url(" + Background + ")"}}> 
 			<div className = 'bg_filter'>
 			<div className = 'login_container'>
 				<h2 className = 'logo'>Fruitz</h2>
