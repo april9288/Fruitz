@@ -1,13 +1,15 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-
 import Background from './Photo/bg1.jpg';
 
-
+const validation = (Isvalid) => {
+	if (!Isvalid) {
+		return (<p className = "validationText" style={{color: "red"}}>invalid</p>);
+	} else {
+		return (<p className = "validationText" style={{color: "green"}}>valid</p>);
+	}
+}
 
 const Login = ({input, click, Isvalid}) => {
 
@@ -18,10 +20,8 @@ const Login = ({input, click, Isvalid}) => {
 				<h2 className = 'logo'>Fruitz</h2>
 				<p id = 'sub_logo'>Fruit Recommendation</p>
 				    <Card className = 'submit_card'>
-					        <FormControl className = 'submit_form' error={!Isvalid} aria-describedby="name-helper-text">
-					          <InputLabel htmlFor="name-helper">Enter email</InputLabel>
-					          <Input style={{marginBottom : 10}} id="name-helper" onChange={input} />
-					        </FormControl>
+					        <input className = "emailinput" type = "email" placeholder = "Enter email" onChange={input}/>
+				    		<span>{validation(Isvalid)}</span>
 				    </Card>
   
 					  <div>
@@ -30,22 +30,7 @@ const Login = ({input, click, Isvalid}) => {
 					      	      onClick={()=>click("main")}>
 					        Login
 					      </Button>
-					  </div>
-	{/*				  <div>
-						      <Button variant="contained" 
-						      		  className="submit_btn"
-						      	      onClick={()=>click("test")}>
-						        Test Mode
-						      </Button>
-						  </div>
-						  <div>
-						      <Button variant="contained" 
-						     		  className="submit_btn2"
-						              >
-						        Tutorial
-						      </Button>
-						  </div>*/}
-					
+					  </div>					
 			</div>
 			</div>
 		</div>
