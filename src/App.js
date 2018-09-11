@@ -1,20 +1,69 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Login from './Components/Login';
+import Main from './Components/Main';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+constructor() {
+    super();
+    this.state = {
+      route: 'login',
+      input_email: '',
+      email_valid: '',
+      value: 0,
+    }
+  }
+
+componentDidMount() {
+ this.setState({email_valid: true});
+ }
+
+validateEmail = (email_test) => {
+  let allowed = /^([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,4}$)/; 
+  return allowed.test(email_test);
+}
+
+inputEmail = (event) => {
+  let email_test = event.target.value;
+  if (this.validateEmail(email_test)){
+    this.setState({input_email: email_test, email_valid: true});
+  } else {
+    this.setState({email_valid: false});
+  }
+}
+
+click = (route) => {
+  if (this.state.email_valid === true && this.state.input_email.length >= 3){
+    this.setState({route: route});
+  } else {
+    this.setState({route: 'login'});
+  }    
+}
+
+clickMain = (route) => {
+  this.setState({route});
+  console.log(`route is ${route}`);
+}
+
+
+handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+render() {
+    if (this.state.route === 'login') {
+      return (<Login 
+          input = {this.inputEmail}
+          click = {this.click}
+          Isvalid = {this.state.email_valid}
+          />);
+    } else {
+      return (<Main
+            value = {this.state.value}
+            handleChange = {this.handleChange} 
+            clickMain = {this.clickMain}
+            route = {this.state.route}
+          />);
+    }
   }
 }
 

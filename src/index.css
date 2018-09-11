@@ -1,5 +1,107 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+.main {
+	display: inline-block;
+	width: 100%;
+/*	background-color: rgb(243, 106, 152);*/
+	background-color: white;
+	height: 100vh;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login {
+	background-image: url('/Photos/123.jpg');
+	height: 100vh;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.bg_filter{
+	background-color: rgba(0,0,0,0.2);
+	height: 100vh;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login_container{
+	display: inline-block;
+    justify-content: center;
+    flex-wrap: wrap;
+	padding-top: 17vh;
+    width: 40%;
+    min-width: 20rem;
+}
+
+
+.logo {
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+	font-size: 3rem;
+	font-family: 'Baloo Tammudu', sans-serif!important;
+}
+
+#sub_logo{
+	margin-top: -2rem;
+	color: white;
+	font-size: 1rem;
+}
+
+.submit_card{
+	margin: 2rem 0;
+	border-radius: 20px!important;
+	width:15rem;
+	display: inline-block;
+}
+
+.submit_form{
+	margin-bottom: 1rem;
+}
+
+
+.submit_btn{
+	width:15rem;
+	padding: 12px 30px!important;
+	font-family: 'Montserrat', sans-serif!important;
+	border-radius: 30px!important;
+	color: rgb(255, 255, 255)!important;
+    background-color: rgb(233, 30, 99)!important;
+    box-shadow: rgba(233, 30, 99, 0.14) 0px 2px 2px 0px, rgba(233, 30, 99, 0.2) 0px 3px 1px -2px, rgba(233, 30, 99, 0.12) 0px 1px 5px 0px!important;
+    border-color: rgb(233, 30, 99)!important;
+	margin: 0.2rem 0.2rem!important;
+    min-width: 12rem!important;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1) 0s, background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s, -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1) 0s!important;
+}
+
+.submit_btn:hover {
+	background-color: rgb(226, 54, 113)!important;
+	
+}
+
+
+.submit_btn2{
+	width:15rem;
+	padding: 12px 30px!important;
+	font-family: 'Montserrat', sans-serif!important;
+	border-radius: 30px!important;
+	color: rgb(255, 255, 255)!important;
+    background-color: rgb(145, 36, 163)!important;
+	box-shadow: rgba(156, 39, 176, 0.42) 0px 14px 26px -12px, rgba(0, 0, 0, 0.12) 0px 4px 23px 0px, rgba(156, 39, 176, 0.2) 0px 8px 10px -5px!important;
+    border-color: rgb(112, 28, 126)!important;
+	margin: 0.2rem 0.2rem!important;
+    min-width: 12rem!important;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1) 0s, background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s, -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1) 0s!important;
+}
+
+.submit_btn2:hover {
+	background-color: rgb(151, 64, 165)!important;
 }
