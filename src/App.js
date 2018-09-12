@@ -6,7 +6,7 @@ class App extends Component {
 constructor() {
     super();
     this.state = {
-      route: 'login',
+      route: 'main',
       input_email: '',
       email_valid: '',
       value: 0,
@@ -41,7 +41,6 @@ click = (route) => {
 
 clickMain = (route) => {
   this.setState({route});
-  console.log(`route is ${route}`);
 }
 
 

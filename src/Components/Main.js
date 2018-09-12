@@ -14,7 +14,6 @@ import PollIcon from '@material-ui/icons/Poll';
 const Main = ({value, handleChange, clickMain, route}) => {
 
 const routeFunction = (route) => {
-	console.log(`routeFunction's route is ${route}`);
 	if (route === "main") {
 		return(<Home />);
 	} else if (route === "training") {
