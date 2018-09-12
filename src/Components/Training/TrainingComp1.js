@@ -51,9 +51,9 @@ function HomeComp1(props) {
             <ol>
               <li>Rate at least 5 items
               </li>
-              <li>Default value is 'none'
+              <li>Then hit the submit button
               </li>
-              <li>Hit 'submit' to test
+              <li>Default value is 'none'
               </li>
             </ol>
           </div>

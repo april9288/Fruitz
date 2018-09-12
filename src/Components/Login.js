@@ -18,7 +18,7 @@ const Login = ({input, click, Isvalid}) => {
 			<div className = 'bg_filter'>
 			<div className = 'login_container'>
 				<h2 className = 'logo'>Fruitz</h2>
-				<p id = 'sub_logo'>Fruit Recommendation</p>
+				<p id = 'sub_logo'>Discover your favorite fruits</p>
 				    <Card className = 'submit_card'>
 					        <input className = "emailinput" type = "email" placeholder = "Enter email" onChange={input}/>
 				    		<span>{validation(Isvalid)}</span>

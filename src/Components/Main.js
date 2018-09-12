@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './Home/Home';
 import Training from './Training/Training';
-import Test from './Test/Test';
+import Discover from './Discover/Discover';
 import Person from './Person/Person';
 
 import Paper from '@material-ui/core/Paper';
@@ -13,18 +13,18 @@ import AndroidIcon from '@material-ui/icons/Android';
 import PollIcon from '@material-ui/icons/Poll';
 import PersonIcon from '@material-ui/icons/Person';
 
-const Main = ({value, handleChange, clickMain, route}) => {
+const Main = ({value, handleChange, clickMain, route, fruitlist, clickRateFruits, ratingChanged}) => {
 
-const routeFunction = (route, clickMain) => {
+const routeFunction = (route, clickMain, fruitlist, clickRateFruits, ratingChanged) => {
 	if (route === "main") {
 		return(<Home />);
 	} else if (route === "training") {
-		return(<Training />);
-	} else if (route === "test") {
-		return(<Test />);
+		return(<Training fruitlist={fruitlist} clickRateFruits={clickRateFruits} ratingChanged={ratingChanged}/>);
+	} else if (route === "discover") {
+		return(<Discover />);
 	} else if (route === "person") {
 		console.log(`person clicked`);
-		return(<Person clickMain={clickMain}/>);
+		return(<Person clickMain={clickMain} />);
 	}
 } 
 
@@ -40,13 +40,13 @@ const routeFunction = (route, clickMain) => {
 		        >
 		          <Tab icon={<DashboardIcon />} label="Home" onClick={()=>clickMain("main")}/>
 		          <Tab icon={<AndroidIcon />} label="Training" onClick={()=>clickMain("training")}/>
-		          <Tab icon={<PollIcon />} label="Test" onClick={()=>clickMain("test")}/>
+		          <Tab icon={<PollIcon />} label="Discover" onClick={()=>clickMain("discover")}/>
 		          <Tab icon={<PersonIcon />} label="Profile" onClick={()=>clickMain("person")}/>
 		        </Tabs>
 		      </Paper>
 		      
 		      <div>
-		      {routeFunction(route, clickMain)}
+		      {routeFunction(route, clickMain, fruitlist, clickRateFruits, ratingChanged)}
 		      </div>
 		</div>
 		);
