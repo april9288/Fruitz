@@ -6,7 +6,7 @@ class App extends Component {
 constructor() {
     super();
     this.state = {
-      route: 'main',
+      route: 'login',
       input_email: '',
       email_valid: '',
       value: 0,
