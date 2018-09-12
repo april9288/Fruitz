@@ -9,12 +9,14 @@ import Scroll from './Scroll';
 const styles = {
   card: {
     width: 345,
-    margin: "1rem 0"
+    margin: "1rem 0",
+    boxShadow: "none!important"
   },
   search: {
-    width: "90%",
-    margin: "1rem",
-    padding: "1rem 0"
+    width: "100%",
+    padding: "1rem 0",
+    border: '1px solid skyblue',
+    marginBottom : "0.5rem"
   }
 };
 
