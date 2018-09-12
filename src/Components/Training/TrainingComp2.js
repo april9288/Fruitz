@@ -22,13 +22,15 @@ const styles = {
 
 
 function HomeComp1(props) {
-  const { classes, fruitlist, clickRateFruits, ratingChanged } = props;
+  const { classes, searchInput, fruitlist, clickRateFruits, ratingChanged } = props;
   return (
     <Card className={classes.card}>
-     <input type="search" placeholder="    Search fruits" className = {classes.search}/>
+
+     <input type="search" placeholder="    Search fruits" className = {classes.search} onChange={searchInput}/>
+
         <Scroll>
         {
-          (fruitlist.length >= 1) ? <Cardlist fruitlist={fruitlist} clickRateFruits={clickRateFruits} ratingChanged={ratingChanged}/> : <div>Loading</div>
+          (fruitlist.length !== 0) ? <Cardlist fruitlist={fruitlist} clickRateFruits={clickRateFruits} ratingChanged={ratingChanged}/> : <div></div>
         }
         </Scroll>
     </Card>

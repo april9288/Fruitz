@@ -7,11 +7,11 @@ const style = {
 }
 
 
-const Person = ({clickMain}) => {
+const Person = ({clickMain, emailString}) => {
 
 	return (
 		<div style = {style}>
-			<PersonComp1 clickMain={clickMain}/>
+			<PersonComp1 clickMain={clickMain} emailString={emailString}/>
 		</div>
 		);
 }

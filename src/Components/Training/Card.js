@@ -7,7 +7,7 @@ const cardstyle = {
   margin: "1rem 0",
 }
 
-const Card = ({fruitlist, clickRateFruits, ratingChanged}) => {
+const Card = ({fruitlist, ratingChanged}) => {
 	return (
 	  <div style={cardstyle}>
       <img src = {fruitlist.img} alt= '' width = {"50"} height = {"50"}/>

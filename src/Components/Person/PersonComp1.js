@@ -30,11 +30,12 @@ const styles = {
 
 
 function HomeComp1(props) {
-  const { classes, clickMain } = props;
+  const { classes, clickMain, emailString } = props;
   return (
     <Card className={classes.card}>
      <p className={classes.header}>Profile</p>
         <CardContent>
+              <p>{emailString}</p>
             <div>
                 <Button variant="contained" 
                         className="submit_btn"

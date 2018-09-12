@@ -13,18 +13,17 @@ import AndroidIcon from '@material-ui/icons/Android';
 import PollIcon from '@material-ui/icons/Poll';
 import PersonIcon from '@material-ui/icons/Person';
 
-const Main = ({value, handleChange, clickMain, route, fruitlist, clickRateFruits, ratingChanged}) => {
+const Main = ({value, handleChange, clickMain, route, searchInput, fruitlist, ratingChanged, emailString}) => {
 
-const routeFunction = (route, clickMain, fruitlist, clickRateFruits, ratingChanged) => {
+const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, emailString) => {
 	if (route === "main") {
 		return(<Home />);
 	} else if (route === "training") {
-		return(<Training fruitlist={fruitlist} clickRateFruits={clickRateFruits} ratingChanged={ratingChanged}/>);
+		return(<Training searchInput={searchInput} fruitlist={fruitlist} ratingChanged={ratingChanged}/>);
 	} else if (route === "discover") {
 		return(<Discover />);
 	} else if (route === "person") {
-		console.log(`person clicked`);
-		return(<Person clickMain={clickMain} />);
+		return(<Person clickMain={clickMain} emailString={emailString}/>);
 	}
 } 
 
@@ -46,7 +45,7 @@ const routeFunction = (route, clickMain, fruitlist, clickRateFruits, ratingChang
 		      </Paper>
 		      
 		      <div>
-		      {routeFunction(route, clickMain, fruitlist, clickRateFruits, ratingChanged)}
+		      {routeFunction(route, clickMain, searchInput, fruitlist, ratingChanged, emailString)}
 		      </div>
 		</div>
 		);
