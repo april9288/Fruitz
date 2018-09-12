@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import TrainingPic from './training.jpg';
 
 const styles = {
@@ -11,10 +10,9 @@ const styles = {
     maxWidth: 345,
     margin: "1rem 0",
     display: "flow-root",
-    backgroundImage: "linear-gradient(266deg, #eb3349 25%, #f45c43 100%), url(" + TrainingPic + ")",
+    backgroundImage: "linear-gradient(266deg, rgba(235, 81, 103, 0.9) 25%, rgba(244, 92, 67, 0.7) 100%), url(" + TrainingPic + ")",
     height: 140,
     minWidth: 345,
-    display: "block",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
