@@ -40,7 +40,12 @@ click = (route) => {
 }
 
 clickMain = (route) => {
-  this.setState({route});
+  if (route !== "logout") {
+    this.setState({route});
+  } else if (route === "logout") {
+    this.setState({route : 'login', input_email: '', email_valid: '', value: 0});
+  }
+  
 }
 
 

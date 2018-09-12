@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
-import Cherry from './Photo/cherry.jpg';
+import Cherry from './cherry.jpg';
 
 const styles = {
   card: {
@@ -45,8 +45,7 @@ function HomeComp1(props) {
         />
         <CardContent>
           <Typography component="p" className={classes.text}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            Hello, We help you find your next favorite fruits. Discover new fruits with us.
           </Typography>
         </CardContent>
       </CardActionArea>
