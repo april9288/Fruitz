@@ -1,12 +1,14 @@
 import React from 'react';
 import Card from './Card';
 
-const Cardlist = ({fruitlist, ratingChanged}) => {
+const Cardlist = ({fruitlist, ratingChanged, ratingValue}) => {
 
 	const new_list = fruitlist.map((fruit, i) => {
 		return <Card key = {fruitlist[i].id} 
 					 fruitlist = {fruitlist[i]}
-					 ratingChanged={ratingChanged} />;
+					 ratingChanged={ratingChanged}
+					 ratingValue={ratingValue[i+1]}
+					 />;
 	});
 
 	return (

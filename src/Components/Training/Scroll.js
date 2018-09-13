@@ -2,7 +2,7 @@ import React from 'react';
 
 const scrollstyle = { 
 	overflowY: 'scroll', 
-	border: '0.5px solid skyblue', 
+	border: '2px solid #ccc', 
 	height: '600px',
 }
 

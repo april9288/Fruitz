@@ -4,22 +4,29 @@ import Main from './Components/Main';
 
 import {fruitlist} from './Data/fruitlist';
 
+let changedRating = [];
+
 class App extends Component {
 constructor() {
     super();
     this.state = {
-      route: 'login',
-      input_email: '',
+      route: 'training',
+      input_email: 'april9288@gmail.com',
       email_valid: '',
-      value: 0,
+      value: 1,
       fruitlist: '',
-      search: ''
+      search: '',
+      userRating: '',
+      changed: ''
     }
   }
 
 //update list of fruit right after rendering
 componentDidMount() {
  this.setState({email_valid: true, fruitlist: fruitlist});
+
+ //plzplzplz this is testmode. plz put it in click() function
+ this.ratingSetup();
  };
 
 //check email field validation
@@ -74,10 +81,46 @@ handleChange = (event, value) => {
     this.setState({ value });
   };
 
+//setup user rating empty plate
+ratingSetup = () => {
+ if (fruitlist.length >= 1){
+   let userRating = [];
+    userRating.push(   {email : this.state.input_email}   );
+   for (let i = 0; i < fruitlist.length; i++) {
+    userRating.push({[fruitlist[i].id] : 0});
+     //important!!!  i must [] for object key if it's dynamic.
+   } 
+   this.setState({userRating});
+ }
+}
+
 //the most important part starts here
-ratingChanged = (rate, fruitId) => {
-  console.log(rate, fruitId);
-};
+ratingChanged = (nextValue, prevValue, fruitId) => {
+  // console.log(nextValue, prevValue, fruitId);
+
+  changedRating = this.state.userRating;
+
+  if (nextValue === prevValue) {
+    for (let i = 1; i < changedRating.length; i++) {
+      if (Number(Object.keys(changedRating[i])) === Number(fruitId)) {
+        changedRating[i][i] = 0;
+        this.setState({userRating : changedRating});
+        break;
+      }
+    }
+  } else {
+    for (let i = 1; i < changedRating.length; i++) {
+      if (Number(Object.keys(changedRating[i])) === Number(fruitId)) {
+        changedRating[i][i] = nextValue;
+        this.setState({userRating : changedRating});
+        break;
+      }
+    }
+  }
+  console.log(changedRating);
+}
+
+
 
 render() {
     //length : 0 or false
@@ -96,14 +139,15 @@ render() {
           />);
     } else {
       return (<Main
-            value = {this.state.value}
-            handleChange = {this.handleChange} 
-            clickMain = {this.clickMain}
-            route = {this.state.route}
-            searchInput = {this.searchInput}
-            fruitlist ={filteredFruit}
-            ratingChanged = {this.ratingChanged}
-            emailString = {this.state.input_email}
+            value = {this.state.value} //material UI tap order value. 0 = left tap
+            handleChange = {this.handleChange} //material UI tap click event
+            clickMain = {this.clickMain} //
+            route = {this.state.route} //route
+            searchInput = {this.searchInput} 
+            fruitlist ={filteredFruit} //list of fruits for 'training mode'
+            ratingChanged = {this.ratingChanged} //star click event
+            ratingValue = {this.state.userRating} //user ration value dynamic ex) {itme1: 5 }
+            emailString = {this.state.input_email} //it goes to the profile to show user email
           />);
     }
   }
