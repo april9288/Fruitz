@@ -31,7 +31,7 @@ const styles = {
 
 
 function HomeComp1(props) {
-  const { classes, searchInput, fruitlist, ratingChanged, ratingValue } = props;
+  const { classes, searchInput, fruitlist, ratingChanged } = props;
   return (
     <Card className={classes.card}>
 
@@ -39,7 +39,7 @@ function HomeComp1(props) {
 
         <Scroll>
         {
-          (fruitlist.length !== 0) ? <Cardlist fruitlist={fruitlist} ratingChanged={ratingChanged} ratingValue={ratingValue}/> : <div></div>
+          (fruitlist.length !== 0) ? <Cardlist fruitlist={fruitlist} ratingChanged={ratingChanged}/> : <div></div>
         }
         </Scroll>
     </Card>

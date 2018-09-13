@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Login from './Components/Login';
 import Main from './Components/Main';
-
 import {fruitlist} from './Data/fruitlist';
-
-let changedRating = [];
 
 class App extends Component {
 constructor() {
@@ -16,17 +13,12 @@ constructor() {
       value: 1,
       fruitlist: '',
       search: '',
-      userRating: '',
-      changed: ''
     }
   }
 
 //update list of fruit right after rendering
 componentDidMount() {
  this.setState({email_valid: true, fruitlist: fruitlist});
-
- //plzplzplz this is testmode. plz put it in click() function
- this.ratingSetup();
  };
 
 //check email field validation
@@ -81,43 +73,19 @@ handleChange = (event, value) => {
     this.setState({ value });
   };
 
-//setup user rating empty plate
-ratingSetup = () => {
- if (fruitlist.length >= 1){
-   let userRating = [];
-    userRating.push(   {email : this.state.input_email}   );
-   for (let i = 0; i < fruitlist.length; i++) {
-    userRating.push({[fruitlist[i].id] : 0});
-     //important!!!  i must [] for object key if it's dynamic.
-   } 
-   this.setState({userRating});
- }
-}
-
 //the most important part starts here
-ratingChanged = (nextValue, prevValue, fruitId) => {
-  // console.log(nextValue, prevValue, fruitId);
-
-  changedRating = this.state.userRating;
-
+ratingChanged = (nextValue, prevValue, name) => {
+  //5 0 "1"
+  //rate 5, prev 0, fruit id
+  let changedList = this.state.fruitlist;
+  let indexforList = Number(name) - 1; //starting from 0
   if (nextValue === prevValue) {
-    for (let i = 1; i < changedRating.length; i++) {
-      if (Number(Object.keys(changedRating[i])) === Number(fruitId)) {
-        changedRating[i][i] = 0;
-        this.setState({userRating : changedRating});
-        break;
-      }
-    }
+    changedList[indexforList]["rate"] = 0;
+    this.setState({fruitlist:changedList});
   } else {
-    for (let i = 1; i < changedRating.length; i++) {
-      if (Number(Object.keys(changedRating[i])) === Number(fruitId)) {
-        changedRating[i][i] = nextValue;
-        this.setState({userRating : changedRating});
-        break;
-      }
-    }
+    changedList[indexforList]["rate"] = nextValue;
+    this.setState({fruitlist:changedList});  
   }
-  console.log(changedRating);
 }
 
 
@@ -146,7 +114,6 @@ render() {
             searchInput = {this.searchInput} 
             fruitlist ={filteredFruit} //list of fruits for 'training mode'
             ratingChanged = {this.ratingChanged} //star click event
-            ratingValue = {this.state.userRating} //user ration value dynamic ex) {itme1: 5 }
             emailString = {this.state.input_email} //it goes to the profile to show user email
           />);
     }
