@@ -1,9 +1,17 @@
 import React from 'react';
+import DiscoverError from './DiscoverError';
 
-const Discover = () => {
+const style = {
+	display: "inline-grid"
+}
+
+const Discover = ({discoverStart}) => {
 
 	return (
-		<div> Discover
+		<div style={style}>
+		{
+			(discoverStart) ? <div>Welcome!</div> : <DiscoverError />
+		}
 		</div>
 		);
 }

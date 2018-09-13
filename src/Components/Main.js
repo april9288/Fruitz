@@ -9,19 +9,19 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import AndroidIcon from '@material-ui/icons/Adb';
-import PollIcon from '@material-ui/icons/Poll';
+import StarIcon from '@material-ui/icons/Star';
+import HotIcon from '@material-ui/icons/Whatshot';
 import PersonIcon from '@material-ui/icons/Person';
 
-const Main = ({value, handleChange, clickMain, route, searchInput, fruitlist, ratingChanged, emailString}) => {
+const Main = ({value, handleChange, clickMain, route, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString}) => {
 
-const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, emailString) => {
+const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString) => {
 	if (route === "main") {
 		return(<Home />);
 	} else if (route === "training") {
-		return(<Training searchInput={searchInput} fruitlist={fruitlist} ratingChanged={ratingChanged} />);
+		return(<Training searchInput={searchInput} fruitlist={fruitlist} ratingChanged={ratingChanged} CardSwitch={CardSwitch} CompCardSwitch={CompCardSwitch}/>);
 	} else if (route === "discover") {
-		return(<Discover />);
+		return(<Discover discoverStart={discoverStart}/>);
 	} else if (route === "person") {
 		return(<Person clickMain={clickMain} emailString={emailString}/>);
 	}
@@ -38,14 +38,14 @@ const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, 
 		          textColor="secondary"
 		        >
 		          <Tab icon={<DashboardIcon />} label={<span>H<span style={{textTransform: "lowercase"}}>ome</span></span>} onClick={()=>clickMain("main")}/>
-		          <Tab icon={<AndroidIcon />} label={<span>T<span style={{textTransform: "lowercase"}}>raining</span></span>} onClick={()=>clickMain("training")}/>
-		          <Tab icon={<PollIcon />} label={<span>D<span style={{textTransform: "lowercase"}}>iscover</span></span>} onClick={()=>clickMain("discover")}/>
+		          <Tab icon={<StarIcon />} label={<span>R<span style={{textTransform: "lowercase"}}>ate</span></span>} onClick={()=>clickMain("training")}/>
+		          <Tab icon={<HotIcon />} label={<span>D<span style={{textTransform: "lowercase"}}>iscover</span></span>} onClick={()=>clickMain("discover")}/>
 		          <Tab icon={<PersonIcon />} label={<span>P<span style={{textTransform: "lowercase"}}>rofile</span></span>} onClick={()=>clickMain("person")}/>
 		        </Tabs>
 		      </Paper>
 		      
 		      <div>
-		      {routeFunction(route, clickMain, searchInput, fruitlist, ratingChanged, emailString)}
+		      {routeFunction(route, clickMain, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString)}
 		      </div>
 		</div>
 		);

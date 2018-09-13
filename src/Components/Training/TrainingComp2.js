@@ -9,7 +9,7 @@ import Scroll from './Scroll';
 const styles = {
   card: {
     width: 345,
-    margin: "1rem 0",
+    margin: "0",
     boxShadow: "none!important"
   },
   search: {

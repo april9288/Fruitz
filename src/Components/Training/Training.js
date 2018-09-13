@@ -8,11 +8,14 @@ const style = {
 }
 
 
-const Training = ({searchInput, fruitlist, ratingChanged}) => {
+const Training = ({searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch}) => {
 
 	return (
 		<div style={style}>
-			<TrainingComp1 />
+			{
+				(CardSwitch) ? <TrainingComp1 CompCardSwitch={CompCardSwitch}/> : <span></span>
+			}
+			
 			<TrainingComp2 searchInput={searchInput} fruitlist={fruitlist} ratingChanged={ratingChanged} />
 		</div>
 		);

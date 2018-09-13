@@ -7,12 +7,14 @@ class App extends Component {
 constructor() {
     super();
     this.state = {
-      route: 'training',
+      route: 'login',
       input_email: 'april9288@gmail.com',
       email_valid: '',
-      value: 1,
+      value: 0,
       fruitlist: '',
       search: '',
+      CardSwitch: true,
+      discoverStart: false
     }
   }
 
@@ -57,13 +59,14 @@ clickMain = (route) => {
   if (route === "main") {
     this.setState({route});
   } else if (route === "training") {
-    this.setState({route, fruitlist});
+    this.setState({route: route, search: ''});
   } else if (route === "discover") {
-    this.setState({route});
+    this.setState({route: route});
+    this.checkRateCount();
   } else if (route === "person") {
-    this.setState({route});
+    this.setState({route: route});
   } else if (route === "logout") {
-    this.setState({route : 'login', input_email: '', email_valid: '', value: 0});
+    this.setState({route : 'login', input_email: '', email_valid: '', value: 0, fruitlist: '', search: ''});
   }  
 };
 
@@ -71,6 +74,10 @@ clickMain = (route) => {
 //value 0 = first menu
 handleChange = (event, value) => {
     this.setState({ value });
+  };
+
+CompCardSwitch = (CardSwitch) => {
+    this.setState({ CardSwitch });
   };
 
 //the most important part starts here
@@ -88,7 +95,22 @@ ratingChanged = (nextValue, prevValue, name) => {
   }
 }
 
-
+//when user clicks discover, then need to count number of rating
+checkRateCount = () => {
+  let checkList = this.state.fruitlist;
+  let count = 0;
+  for (let i = 0; i < checkList.length; i++) {
+    if (checkList[i]["rate"] > 0) {
+      count++;
+      }
+  }
+  console.log(`count : ${count}`);
+  if (count > 4) {
+    this.setState({discoverStart : true});
+  } else {
+    this.setState({discoverStart : false});
+  }
+}
 
 render() {
     //length : 0 or false
@@ -114,6 +136,9 @@ render() {
             searchInput = {this.searchInput} 
             fruitlist ={filteredFruit} //list of fruits for 'training mode'
             ratingChanged = {this.ratingChanged} //star click event
+            CardSwitch = {this.state.CardSwitch} //true or false
+            CompCardSwitch = {this.CompCardSwitch} //RateComp1 card close switch
+            discoverStart = {this.state.discoverStart} //if user rates more than 4, start calculating
             emailString = {this.state.input_email} //it goes to the profile to show user email
           />);
     }
