@@ -49,7 +49,7 @@ export const fruitlist = [
   },
   {
     id: 9,
-    name: 'cherry',
+    name: 'Cherry',
     rate: 0,
     img: 'https://raw.githubusercontent.com/Horea94/Fruit-Images-Dataset/master/Test/Cherry%201/321_100.jpg',
   },
