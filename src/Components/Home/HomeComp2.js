@@ -12,6 +12,7 @@ import Gear from './gear.jpg';
 const styles = {
   card: {
     maxWidth: 345,
+    minWidth: 345,
     margin: "1rem 0"
   },
   media: {

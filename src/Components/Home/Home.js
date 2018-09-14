@@ -3,7 +3,6 @@ import HomeComp1 from './HomeComp1';
 import HomeComp2 from './HomeComp2';
 
 const style = {
-	margin : "1rem",
 	display: "inline-grid"
 }
 

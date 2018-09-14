@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-
+import Avatar from './Avatar';
 import Button from '@material-ui/core/Button';
 
 const styles = {
   card: {
     maxWidth: 345,
+    minWidth: 345,
     margin: "1rem 0"
   },
   media: {
@@ -34,6 +35,7 @@ function HomeComp1(props) {
   return (
     <Card className={classes.card}>
      <p className={classes.header}>Profile</p>
+        <Avatar emailString={emailString}/>
         <CardContent>
               <p>{emailString}</p>
             <div>
