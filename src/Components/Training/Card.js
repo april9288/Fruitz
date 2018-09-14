@@ -8,7 +8,7 @@ const cardstyle = {
 }
 
 const StarRendering = (nextValue, prevValue, name) => {
-  return <i className="fa fa-star" aria-hidden="true"></i>
+  return <i style={{fontSize: "1.7rem"}} className="fa fa-star" aria-hidden="true"></i>
 }
 
 const Card = ({fruitlist, ratingChanged}) => { 

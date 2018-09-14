@@ -7,10 +7,10 @@ class App extends Component {
 constructor() {
     super();
     this.state = {
-      route: 'login',
+      route: 'discover',
       input_email: 'april9288@gmail.com',
       email_valid: '',
-      value: 0,
+      value: 2,
       fruitlist: '',
       search: '',
       CardSwitch: true,
