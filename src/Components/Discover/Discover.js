@@ -6,12 +6,12 @@ const style = {
 	display: "inline-grid"
 }
 
-const Discover = ({discoverStart}) => {
+const Discover = ({discoverStart, result}) => {
 
 	return (
 		<div style={style}>
 		{
-			(discoverStart) ? <DiscoverResult /> : <DiscoverError />
+			(discoverStart) ? <DiscoverResult result={result}/> : <DiscoverError />
 		}
 		</div>
 		);

@@ -13,15 +13,15 @@ import StarIcon from '@material-ui/icons/Star';
 import HotIcon from '@material-ui/icons/Whatshot';
 import PersonIcon from '@material-ui/icons/Person';
 
-const Main = ({value, handleChange, clickMain, route, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString}) => {
+const Main = ({value, handleChange, clickMain, route, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString, result}) => {
 
-const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString) => {
+const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString, result) => {
 	if (route === "main") {
 		return(<Home />);
 	} else if (route === "training") {
 		return(<Training searchInput={searchInput} fruitlist={fruitlist} ratingChanged={ratingChanged} CardSwitch={CardSwitch} CompCardSwitch={CompCardSwitch}/>);
 	} else if (route === "discover") {
-		return(<Discover discoverStart={discoverStart}/>);
+		return(<Discover discoverStart={discoverStart} result={result}/>);
 	} else if (route === "person") {
 		return(<Person clickMain={clickMain} emailString={emailString}/>);
 	}
@@ -45,7 +45,7 @@ const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, 
 		      </Paper>
 		      
 		      <div>
-		      {routeFunction(route, clickMain, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString)}
+		      {routeFunction(route, clickMain, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString, result)}
 		      </div>
 		</div>
 		);

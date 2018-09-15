@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Login from './Components/Login';
 import Main from './Components/Main';
 import {fruitlist} from './Data/fruitlist';
-import sampleRating from './Data/samplerating.json';
+import sampleRating from './Data/sampleRating.json';
 
 class App extends Component {
 constructor() {
@@ -16,7 +16,8 @@ constructor() {
       search: '',
       CardSwitch: true,
       discoverStart: false, //default false
-      sampleRating: '' //default remove it
+      userObj: '',
+      resultArray: [] //real final result top 5 fruits info //need to update to discover menu
     }
   }
 
@@ -123,120 +124,168 @@ checkRateCount = () => {
   }
 }
 
-
-// mongoose obj schema
-// {
-//   "email": "april@gmail.com",
-//   "rate" : {
-//     "apple" : 2,
-//     "banana" : 0,
-//     "cherry" : 5,
-//     "orange" : 0
-//   }
-// }
-
 createNewObj = () => {
-  let email = this.state.input_email;
   let userObj = {};
-  userObj["email"] = email;
-  let listcopy = {};
+  let fruitlistCopy = {};
   let list = this.state.fruitlist;
   for (let i = 0; i < list.length; i++) {
     let name = list[i].name; //apple, banana...
     let rate = list[i].rate; //1 to 5 in number
-    listcopy[name] = rate;
+    fruitlistCopy[name] = rate;
   }
-  userObj["rate"] = listcopy;
-  this.sendtoDB(listcopy);
-}
 
-sendtoDB= (listcopy) => {
+  userObj["email"] = this.state.input_email;
+  userObj["rate"] = fruitlistCopy;
+  this.setState({userObj:userObj});
+
   fetch('http://localhost:3001/rating', {
     method: 'post',
     headers: {'Content-Type' : 'application/json'},
     body: JSON.stringify({
       email: this.state.input_email,
-      rate: listcopy
+      rate: fruitlistCopy
     })  
   })
   .then(res => res.json())
   .then(res => {
     console.log("response from server");
     console.log(res);
+    //update resonse to state
+    //run this.calculateKNN()
     })
 }
 
-
-
 calculateKNN = () => {
-  console.log("hi");
-  console.log(sampleRating[0].rate["Banana"]);
+  console.log("calculating now");
+
+  let plzremoveit = {
+      email: "pinkkky@gmail.com",
+      rate: {
+            "Apple Golden": 4,
+            "Apple Red": 4,
+            "Apricot": 5,
+            "Avocado": 4,
+            "Banana": 0,
+            "Cactus fruit": 5,
+            "Cantaloupe": 3,
+            "Carambula": 0,
+            "Cherry": 5,
+            "Clementine": 5,
+            "Cocos": 3,
+            "Granadilla": 3
+        }
+  }
+
+  let similarityScores = {}
+  for (let i = 0; i < sampleRating.length; i++) {
+    let similarity = this.euclideanSimilarity(plzremoveit,sampleRating[i]);
+    if (plzremoveit.email !== sampleRating[i].email) {
+      similarityScores[sampleRating[i].email] = similarity;
+    } else {
+      similarityScores[sampleRating[i].email] = -1;
+    }
+  }
+  // console.log(similarityScores);
+
+  let sampleRatingCopy = sampleRating;
+  sampleRatingCopy.sort((a,b) => {
+    let score1 = similarityScores[a.email];
+    let score2 = similarityScores[b.email];
+    return score2 - score1;
+  });
+
+  // console.log(sampleRatingCopy);
+
+  //to calculate top 5 fruits
+  //last calculation
+  let lastResult = {};
+  let fruitNames = Object.keys(sampleRatingCopy[0].rate);
+  
+
+  for (let i = 0; i < fruitNames.length; i++) {
+    let weightScore = 0;
+    let fruitName = fruitNames[i];
+
+    for (let j = 0; j < 5; j++ ) {
+      let personRate = sampleRatingCopy[j].rate[fruitName];
+      let personSim = similarityScores[sampleRatingCopy[j].email];
+      let MultiplyRS = personRate * personSim;
+      weightScore += MultiplyRS;
+    }
+
+    //correction
+    let handler = 10;
+    let correction;
+    let userRate = plzremoveit.rate[fruitName]
+    if (plzremoveit.rate[fruitName] !== 0) {
+      correction = 1 / ( userRate * handler ) ;
+    } else {
+      correction = 0; 
+    }
+    lastResult[fruitName] = (weightScore - correction);
+  }
+
+  //sorting the result object
+  let sortedResult = [];
+  for (let i = 0 ; i < fruitNames.length; i++) {
+    let fruitName = fruitNames[i]
+    sortedResult.push([fruitName,lastResult[fruitName]]);
+  }
+  sortedResult.sort((a,b) => b[1]-a[1]);
+  //only top5 slice the sorted result
+  let top5 = sortedResult.slice(0,5);
+
+  //To create an obj to update to "Discover" menu
+  let resultArray = [];
+  for (let i = 0; i < top5.length; i++) {
+    let objForRA = {};
+    let name = top5[i][0];
+    let score = top5[i][1];
+    let img;
+
+    for (let j = 0; j < fruitlist.length; j++) {
+      if (name === fruitlist[j].name) {
+        img = fruitlist[j].img
+        break;
+      }
+    }
+
+    objForRA = {name, score, img}
+    resultArray.push(objForRA);
+  }
+
+  console.log(`final result : ${resultArray}`);
+  this.setState({resultArray});
+
 }
 
-///////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////
-//!!!!!!!!!!!!!!!!!!!!!!!test purpose!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-///////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////
-
-
-// createNewObj = () => {
-//   let arrayset = [0, 1, 2, 3, 4, 5];
-//   let listcopy = {};
-//   let list = this.state.fruitlist;
-//   for (let i = 0; i < list.length; i++) {
-//     let name = list[i].name; //apple, banana...
-//     let rate = arrayset[Math.floor(Math.random() * 6)]
-//     listcopy[name] = rate;
-//   }
-//   this.sendtoDB(listcopy);
-// }
-
-// sendtoDB= (listcopy) => {
-//   let letterset = 'abcdefghijklmnopqrstuvwxyz';
-//   let email = `${letterset[Math.floor(Math.random() * 25)]}${letterset[Math.floor(Math.random() * 25)]}${letterset[Math.floor(Math.random() * 25)]}${letterset[Math.floor(Math.random() * 25)]}@gmail.com`;
-
-//   fetch('http://localhost:3001/rating', {
-//     method: 'post',
-//     headers: {'Content-Type' : 'application/json'},
-//     body: JSON.stringify({
-//       email: email,
-//       rate: listcopy
-//     })  
-//   })
-//   .then(res => res.json())
-//   .then(res => {
-//     console.log("response from server");
-//     console.log(res);
-//     })
-// }
+//resultArray = [];
+// 0: {name: "Cactus fruit", score: 3.2526885328403696, img: "https://raw.githubusercontent.com/Horea94/Fruit-Images-Dataset/master/Test/Cactus%20fruit/16_100.jpg"}
+// 1: {name: "Banana", score: 3.013143254984895, img: "https://raw.githubusercontent.com/Horea94/Fruit-Images-Dataset/master/Test/Banana/100_100.jpg"}
+// 2: {name: "Clementine", score: 2.977503966511877, img: "https://raw.githubusercontent.com/Horea94/Fruit-Images-Dataset/master/Test/Clementine/100_100.jpg"}
+// 3: {name: "Cocos", score: 2.6257721540825862, img: "https://raw.githubusercontent.com/Horea94/Fruit-Images-Dataset/master/Test/Cocos/10_100.jpg"}
+// 4: {name: "Cantaloupe", score: 2.5400529112208297, img: "https://raw.githubusercontent.com/Horea94/Fruit-Im…es-Dataset/master/Test/Cantaloupe%201/100_100.jpg"}
 
 
 
 
 
+euclideanSimilarity = (data1, data2) => {
+  let personRateArr1 = Object.values(data1.rate);
+  //[1,2,3,1,2,3,1,1,,2,2,2]
+  let personRateArr2 = Object.values(data2.rate);
 
-///////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////
-
-// euclideanSimilarity = (data1, data2) => {
-//  let sumSquares = 0;
-//  for (let i = 0; i < data1.length; i++) {
-//    let rate1 = data1[i][i+1];
-//    let rate2 = data2[i][i+1];
-//    if (rate1 !== "none" && rate2 !== "none") {
-//      let difference = rate1 - rate2;
-//      sumSquares += difference * difference;
-//    }
-//  }
-//  let distance = Math.sqrt(sumSquares);
-//  let similarity = 1 / (1 + distance);
-//  console.log("distance : ", distance);
-//  console.log("similarity : ", similarity);
-//  this.setState({similarity});
-// }
+  let sumSquares = 0;
+  for (let i = 0; i < personRateArr1.length; i++) {
+   if (personRateArr1[i] !== 0 && personRateArr2[i] !== 0) {
+     let difference = personRateArr1[i] - personRateArr2[i];
+     sumSquares += difference * difference;
+   }
+  }
+  let distance = Math.sqrt(sumSquares);
+  let similarity = 1 / (1 + distance);
+  return similarity;
+  }
 
 
 render() {
@@ -267,6 +316,7 @@ render() {
             CompCardSwitch = {this.CompCardSwitch} //RateComp1 card close switch
             discoverStart = {this.state.discoverStart} //if user rates more than 4, start calculating
             emailString = {this.state.input_email} //it goes to the profile to show user email
+            result = {this.state.resultArray}
           />);
     }
   }
