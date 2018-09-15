@@ -8,14 +8,14 @@ class App extends Component {
 constructor() {
     super();
     this.state = {
-      route: 'training', //defualt login
+      route: 'discover', //defualt login
       input_email: 'april9288@gmail.com', //default ''
       email_valid: '',
-      value: 1, //defualt 0
+      value: 2, //defualt 0
       fruitlist: '',
       search: '',
       CardSwitch: true,
-      discoverStart: false, //default false
+      discoverStart: true, //default false
       userObj: '',
       resultArray: [] //real final result top 5 fruits info //need to update to discover menu
     }
@@ -25,7 +25,7 @@ constructor() {
 componentDidMount() {
  this.setState({email_valid: true, fruitlist: fruitlist}); 
  // this.setState({sampleRating}); //default remove it
- this.calculateKNN(); //default remove it
+ // this.calculateKNN(); //default remove it
  };
 
 //check email field validation
@@ -241,6 +241,7 @@ calculateKNN = () => {
     let objForRA = {};
     let name = top5[i][0];
     let score = top5[i][1];
+    //x.toPrecision(3)
     let img;
 
     for (let j = 0; j < fruitlist.length; j++) {
@@ -256,23 +257,15 @@ calculateKNN = () => {
 
   console.log(`final result : ${resultArray}`);
   this.setState({resultArray});
-
 }
 
-//resultArray = [];
-// 0: {name: "Cactus fruit", score: 3.2526885328403696, img: "https://raw.githubusercontent.com/Horea94/Fruit-Images-Dataset/master/Test/Cactus%20fruit/16_100.jpg"}
-// 1: {name: "Banana", score: 3.013143254984895, img: "https://raw.githubusercontent.com/Horea94/Fruit-Images-Dataset/master/Test/Banana/100_100.jpg"}
-// 2: {name: "Clementine", score: 2.977503966511877, img: "https://raw.githubusercontent.com/Horea94/Fruit-Images-Dataset/master/Test/Clementine/100_100.jpg"}
-// 3: {name: "Cocos", score: 2.6257721540825862, img: "https://raw.githubusercontent.com/Horea94/Fruit-Images-Dataset/master/Test/Cocos/10_100.jpg"}
-// 4: {name: "Cantaloupe", score: 2.5400529112208297, img: "https://raw.githubusercontent.com/Horea94/Fruit-Im…es-Dataset/master/Test/Cantaloupe%201/100_100.jpg"}
 
 
-
-
-
+// core of core function for this webapp
+// calculate similarity between two person
 euclideanSimilarity = (data1, data2) => {
   let personRateArr1 = Object.values(data1.rate);
-  //[1,2,3,1,2,3,1,1,,2,2,2]
+  //ex [1,2,3,1,2,3,1,1,1,2,2,2]
   let personRateArr2 = Object.values(data2.rate);
 
   let sumSquares = 0;
