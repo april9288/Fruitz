@@ -5,7 +5,7 @@ import {fruitlist} from './Data/fruitlist';
 // import sampleRating from './Data/sampleRating.json';
 
 const port1 = "https://fruitzapi.herokuapp.com/";
-const port2 = "http://localhost:3001/";
+// const port2 = "http://localhost:3001/";
 const port = port1;
 
 class App extends Component {
@@ -102,7 +102,7 @@ ratingChanged = (nextValue, prevValue, name) => {
         lastrate: nextValue,
       })  
     }) //  .then(res => res.json())
-    .then(res => console.log(res))
+    // .then(res => console.log(res))
    
     
 
@@ -165,6 +165,8 @@ createNewObj = (fruitlistCopy) => {
   })
   .then(res => res.json())
   .then(res => {
+    // console.log("Response from server!!!");
+    // console.log(res);
     this.calculateKNN(userObj, res)
     })
 }
@@ -244,7 +246,7 @@ calculateKNN = (userObj, resonseFromServer) => {
     resultArray.push(objForRA);
   }
 
-  console.log(resultArray);
+  // console.log(resultArray);
   this.setState({resultArray});
 }
 

@@ -30,7 +30,8 @@ const Login = ({input, click, Isvalid}) => {
 					      	      onClick={()=>click("main")}>
 					        Login
 					      </Button>
-					  </div>					
+					  </div>
+				<div>beta 0.0.1</div>					
 			</div>
 			</div>
 		</div>
