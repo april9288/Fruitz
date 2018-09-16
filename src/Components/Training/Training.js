@@ -28,12 +28,10 @@ const searchStyle = {
     paddingLeft: 60
 }
 
-
-// eslint-disable-next-line
 const topbar = {
-    backgroundColor: "#DA4453",  /* fallback for old browsers */
-    backgroundColor: "-webkit-linear-gradient(to left, #89216B, #DA4453)",  /* Chrome 10-25, Safari 5.1-6 */
-    backgroundColor: "linear-gradient(to left, #89216B, #DA4453)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: "#DA4453",  /* fallback for old browsers */
+    background: "-webkit-linear-gradient(to left, #89216B, #DA4453)",  /* Chrome 10-25, Safari 5.1-6 */
+    background: "linear-gradient(to left, #89216B, #DA4453)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     top: 0,
     position: "fixed",
     width: "100%",
