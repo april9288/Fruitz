@@ -1,5 +1,6 @@
 import React from 'react';
 import Cardlist from './Cardlist';
+import Snack from './Snack';
 import searchIcon from '../Photo/search.png';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -39,7 +40,7 @@ const topbar = {
     height: 66
 }
 
-const Training = ({searchInput, fruitlist, ratingChanged}) => {
+const Training = ({searchInput, fruitlist, ratingChanged, snackClose, snackOpener}) => {
 
 	return (
 		<div>
@@ -50,6 +51,7 @@ const Training = ({searchInput, fruitlist, ratingChanged}) => {
 			{
          		 (fruitlist.length >= 1) ? <Cardlist fruitlist={fruitlist} ratingChanged={ratingChanged}/> : <CircularProgress color="secondary" thickness={3} size={50}/>
         	}	
+            <Snack snackClose={snackClose} snackOpener={snackOpener}/>  
 			</div>
 		</div>
 		);

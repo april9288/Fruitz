@@ -21,13 +21,19 @@ constructor() {
       discoverStart: false, //default false
       userObj : '',
       resultArray: [], //real final result top 5 fruits info //need to update to discover menu
-      lastrate: 0
+      lastrate: 0,
+      snackOpener: false,
+      fruitnews : ''
     }
   }
+
 
 //update list of fruit right after rendering
 componentDidMount() {
  this.setState({email_valid: true, fruitlist: fruitlist}); 
+ fetch('https://newsapi.org/v2/everything?q=fruits&apiKey=ec83633a1a744267bd9e06786610348a')
+      .then(response => response.json())
+      .then(json => this.setState({fruitnews : json}))
  };
 
 //check email field validation
@@ -66,7 +72,7 @@ clickMain = (route) => {
   if (route === "main") {
     this.setState({route});
   } else if (route === "training") {
-    this.setState({route: route, search: ''});
+    this.setState({route: route, search: '', snackOpener: true});
   } else if (route === "discover") {
     this.setState({route: route});
     this.checkRateCount();
@@ -91,6 +97,14 @@ defaultFruitlist = () => {
 //value 0 = first menu
 handleChange = (event, value) => {
     this.setState({ value });
+  };
+
+//snack bar close handler
+snackClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({ snackOpener: false });
   };
 
 //the most important part starts here
@@ -307,6 +321,9 @@ render() {
             emailString = {this.state.input_email} //it goes to the profile to show user email
             result = {this.state.resultArray}
             lastrate = {this.state.lastrate}
+            snackClose = {this.snackClose}
+            snackOpener = {this.state.snackOpener}
+            fruitnews={this.state.fruitnews}
           />);
     }
   }

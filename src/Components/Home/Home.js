@@ -1,11 +1,13 @@
 import React from 'react';
-import HomeComp1 from './HomeComp1';
-import HomeComp2 from './HomeComp2';
+import AppNewsCard from './AppNewsCard';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const style = {
-	display: "inline-grid",
-	marginBottom: "75px",
-	marginTop: "70px",
+	display: "inline-flex",
+    marginBottom: 75,
+    marginTop: 70,
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
 }
 
 const topbar = {
@@ -30,7 +32,18 @@ const headtext = {
     padding: "5px 0 0 30px",
 }
 
-const Home = () => {
+
+const Home = ({fruitnews}) => {
+	const newsList = fruitnews.articles.map((onenews, i) => {
+		let r1 = Math.floor(Math.random() * 255);
+		let r2 = Math.floor(Math.random() * 255);
+		let r3 = Math.floor(Math.random() * 255);
+		let r = [r1, r2, r3];
+		return <AppNewsCard key = {onenews.url} 
+					        onenews = {onenews}
+					        rgb = {r}
+					        />;
+	});
 
 	return (
 		<div>
@@ -38,8 +51,9 @@ const Home = () => {
 					<p style={headtext}>Fruitz</p>
 			</div>
 			<div style = {style}>
-				<HomeComp1 />
-				<HomeComp2 />
+			{
+				(fruitnews !== '') ? newsList.sort((a, b) => 0.5 - Math.random()) : <CircularProgress color="secondary" thickness={3} size={50}/>
+			}
 			</div>
 		</div>
 		);

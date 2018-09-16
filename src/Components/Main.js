@@ -21,13 +21,13 @@ const tapmenu = {
 }
 
 
-const Main = ({value, handleChange, clickMain, route, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate}) => {
+const Main = ({value, handleChange, clickMain, route, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate, snackClose, snackOpener, fruitnews}) => {
 
-const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate) => {
+const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate, snackClose, snackOpener, fruitnews) => {
 	if (route === "main") {
-		return(<Home />);
+		return(<Home fruitnews={fruitnews}/>);
 	} else if (route === "training") {
-		return(<Training searchInput={searchInput} fruitlist={fruitlist} ratingChanged={ratingChanged} />);
+		return(<Training searchInput={searchInput} fruitlist={fruitlist} ratingChanged={ratingChanged} snackClose={snackClose} snackOpener={snackOpener}/>);
 	} else if (route === "discover") {
 		return(<Discover discoverStart={discoverStart} result={result} ratingChanged={ratingChanged} lastrate={lastrate} />);
 	} else if (route === "person") {
@@ -53,7 +53,7 @@ const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, 
 		      </Paper>
 		      
 		      <div>
-		      {routeFunction(route, clickMain, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate)}
+		      {routeFunction(route, clickMain, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate, snackClose, snackOpener, fruitnews)}
 		      </div>
 		</div>
 		);
