@@ -20,7 +20,7 @@ constructor() {
       search: '',
       CardSwitch: true,
       discoverStart: false, //default false
-      resultArray: [], //real final result top 5 fruits info //need to update to discover menu
+      resultArray: '', //real final result top 5 fruits info //need to update to discover menu
       lastrate: 0
     }
   }
