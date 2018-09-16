@@ -7,7 +7,7 @@ import KiwiPic from './kiwi.jpg';
 const styles = {
   card: {
     width: 345,
-    height: 100,
+    height: 80,
     display: "flow-root",
     backgroundImage: "linear-gradient(266deg, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2) 50%), url(" + KiwiPic + ")",
     backgroundSize: "cover",
@@ -16,7 +16,7 @@ const styles = {
     backgroundBlendMode: "multiply"
   },
   header: {
-    paddingTop: "1.5rem",
+    paddingTop: "1rem",
     fontFamily: "'Baloo Tammudu'!important",
     color: "white",
     fontSize: "1.2rem",
@@ -31,7 +31,7 @@ function ResultComp1(props) {
   return (
     <Card className={classes.card}>
           <div>
-            <p className={classes.header}>You would like these fruits</p>
+            <p className={classes.header}>Here's a list of fruits you might love</p>
           </div>
     </Card>
   );

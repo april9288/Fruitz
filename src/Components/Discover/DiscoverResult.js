@@ -6,7 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
-const DiscoverResult = ({ result }) => {
+const DiscoverResult = ({ result, ratingChanged, lastrate }) => {
 
   const new_list = result.map((res, i) => {
     return <ResultComp2 key = {res.name} 
@@ -22,7 +22,7 @@ const DiscoverResult = ({ result }) => {
       (result) ? (new_list) : <CircularProgress color="secondary" thickness={3} size={100}/>
     }
     {
-      (result) ? <ResultComp3 /> : <span></span>
+      (result) ? <ResultComp3 ratingChanged={ratingChanged} lastrate={lastrate}/> : <span></span>
     }
     </div>
   );
