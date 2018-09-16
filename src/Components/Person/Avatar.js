@@ -19,8 +19,7 @@ const styles = {
   },
 };
 
-function ImageAvatars(props) {
-  const { classes, emailString } = props;
+const ImageAvatars = ({ classes, emailString }) => {
   return (
     <div className={classes.row}>
       <Avatar

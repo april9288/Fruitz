@@ -6,7 +6,6 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-
 import Gear from './gear.jpg';
 
 const styles = {
@@ -32,8 +31,7 @@ const styles = {
   }
 };
 
-function HomeComp1(props) {
-  const { classes } = props;
+const HomeComp2 = ({ classes }) => {
   return (
     <Card className={classes.card}>
      <p className={classes.header}>How it works</p>
@@ -54,8 +52,8 @@ function HomeComp1(props) {
   );
 }
 
-HomeComp1.propTypes = {
+HomeComp2.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HomeComp1);
+export default withStyles(styles)(HomeComp2);

@@ -33,8 +33,7 @@ const styles = {
 };
 
 
-function HomeComp1(props) {
-  const { classes } = props;
+const HomeComp1 = ({ classes }) => {
   return (
     <Card className={classes.card}>
      <p className={classes.header}>Welcome to Fruitz</p>

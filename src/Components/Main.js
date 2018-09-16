@@ -13,23 +13,31 @@ import StarIcon from '@material-ui/icons/Star';
 import HotIcon from '@material-ui/icons/Whatshot';
 import PersonIcon from '@material-ui/icons/Person';
 
-const Main = ({value, handleChange, clickMain, route, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString, result, lastrate}) => {
+const tapmenu = {
+    position: "fixed",
+    bottom: 0,
+    zIndex: 100,
+    width: "100%",
+}
 
-const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString, result, lastrate) => {
+
+const Main = ({value, handleChange, clickMain, route, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate}) => {
+
+const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate) => {
 	if (route === "main") {
 		return(<Home />);
 	} else if (route === "training") {
-		return(<Training searchInput={searchInput} fruitlist={fruitlist} ratingChanged={ratingChanged} CardSwitch={CardSwitch} CompCardSwitch={CompCardSwitch}/>);
+		return(<Training searchInput={searchInput} fruitlist={fruitlist} ratingChanged={ratingChanged} />);
 	} else if (route === "discover") {
-		return(<Discover discoverStart={discoverStart} result={result} ratingChanged={ratingChanged} lastrate={lastrate}/>);
+		return(<Discover discoverStart={discoverStart} result={result} ratingChanged={ratingChanged} lastrate={lastrate} />);
 	} else if (route === "person") {
-		return(<Person clickMain={clickMain} emailString={emailString}/>);
+		return(<Person clickMain={clickMain} emailString={emailString} />);
 	}
 } 
 
 	return (
 		<div className = 'main'> 
-		      <Paper square>
+		      <Paper square style={tapmenu}>
 		        <Tabs
 		          value={value}
 		          onChange={handleChange}
@@ -37,15 +45,15 @@ const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, 
 		          indicatorColor="secondary"
 		          textColor="secondary"
 		        >
-		          <Tab icon={<DashboardIcon />} label={<span>H<span style={{textTransform: "lowercase"}}>ome</span></span>} onClick={()=>clickMain("main")}/>
+		          <Tab icon={<DashboardIcon />} label={<span>F<span style={{textTransform: "lowercase"}}>eatured</span></span>} onClick={()=>clickMain("main")}/>
 		          <Tab icon={<StarIcon />} label={<span>R<span style={{textTransform: "lowercase"}}>ate</span></span>} onClick={()=>clickMain("training")}/>
 		          <Tab icon={<HotIcon />} label={<span>D<span style={{textTransform: "lowercase"}}>iscover</span></span>} onClick={()=>clickMain("discover")}/>
-		          <Tab icon={<PersonIcon />} label={<span>P<span style={{textTransform: "lowercase"}}>rofile</span></span>} onClick={()=>clickMain("person")}/>
+		          <Tab icon={<PersonIcon />} label={<span>A<span style={{textTransform: "lowercase"}}>ccount</span></span>} onClick={()=>clickMain("person")}/>
 		        </Tabs>
 		      </Paper>
 		      
 		      <div>
-		      {routeFunction(route, clickMain, searchInput, fruitlist, ratingChanged, CardSwitch, CompCardSwitch, discoverStart, emailString, result, lastrate)}
+		      {routeFunction(route, clickMain, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate)}
 		      </div>
 		</div>
 		);

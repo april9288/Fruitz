@@ -18,7 +18,6 @@ constructor() {
       value: 0, //defualt 0
       fruitlist: '',
       search: '',
-      CardSwitch: true,
       discoverStart: false, //default false
       userObj : '',
       resultArray: [], //real final result top 5 fruits info //need to update to discover menu
@@ -92,10 +91,6 @@ defaultFruitlist = () => {
 //value 0 = first menu
 handleChange = (event, value) => {
     this.setState({ value });
-  };
-
-CompCardSwitch = (CardSwitch) => {
-    this.setState({ CardSwitch });
   };
 
 //the most important part starts here
@@ -308,8 +303,6 @@ render() {
             searchInput = {this.searchInput} 
             fruitlist ={filteredFruit} //list of fruits for 'training mode'
             ratingChanged = {this.ratingChanged} //star click event
-            CardSwitch = {this.state.CardSwitch} //true or false
-            CompCardSwitch = {this.CompCardSwitch} //RateComp1 card close switch
             discoverStart = {this.state.discoverStart} //if user rates more than 4, start calculating
             emailString = {this.state.input_email} //it goes to the profile to show user email
             result = {this.state.resultArray}

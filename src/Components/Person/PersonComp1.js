@@ -30,8 +30,7 @@ const styles = {
 };
 
 
-function HomeComp1(props) {
-  const { classes, clickMain, emailString } = props;
+const PersonComp1 = ({ classes, clickMain, emailString }) => {
   return (
     <Card className={classes.card}>
      <p className={classes.header}>Profile</p>
@@ -51,8 +50,8 @@ function HomeComp1(props) {
   );
 }
 
-HomeComp1.propTypes = {
+PersonComp1.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HomeComp1);
+export default withStyles(styles)(PersonComp1);

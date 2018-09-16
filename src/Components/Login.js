@@ -31,7 +31,7 @@ const Login = ({input, click, Isvalid}) => {
 					        Login
 					      </Button>
 					  </div>
-				<div>beta 0.0.3</div>					
+				<div>beta 0.0.4</div>					
 			</div>
 			</div>
 		</div>

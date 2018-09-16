@@ -11,7 +11,7 @@ const Cardlist = ({fruitlist, ratingChanged}) => {
 	});
 
 	return (
-		<div className = "cardlist_fruits"> 
+		<div style={{width: "100%"}}> 
 			{new_list}
 		</div>
 		);

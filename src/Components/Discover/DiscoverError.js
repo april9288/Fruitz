@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
+// import Card from '@material-ui/core/Card';
 import ErrorIcon from '@material-ui/icons/ErrorOutline';
 
 const styles = {
@@ -35,17 +35,16 @@ const styles = {
 };
 
 
-function DiscoverError(props) {
-  const { classes } = props;
+const DiscoverError = ({ classes }) => {
   return (
-    <Card className={classes.card}>
-          <div className={classes.ErrorIconDiv}>
-          <ErrorIcon className={classes.ErrorIcon}/>
-          </div>
-          <div>
-            <p className={classes.header}>Please rate at least 5 items</p>
-          </div>
-    </Card>
+      <div>
+        <div className={classes.ErrorIconDiv}>
+        <ErrorIcon className={classes.ErrorIcon}/>
+        </div>
+        <div>
+          <p className={classes.header}>Please rate at least 5 items</p>
+        </div>
+      </div>
   );
 }
 

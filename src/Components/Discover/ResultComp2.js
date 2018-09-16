@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import StarRatingComponent from 'react-star-rating-component';
-// import Card from '@material-ui/core/Card';
 
 const styles = {
   card: {
@@ -17,9 +16,7 @@ const StarRendering = (nextValue, prevValue, name) => {
   return <i style={{fontSize: "1.7rem"}} className="fa fa-star" aria-hidden="true"></i>
 }
 
-// Math.ceil(.89)
 const ResultComp2 = ({ classes, result }) => {
-
   return (
     <div className = {classes.card}>
       <img src = {result.img} alt= '' width = {"50"} height = {"50"}/>

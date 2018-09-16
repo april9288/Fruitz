@@ -35,8 +35,7 @@ const StarRendering = (nextValue, prevValue, name) => {
   return <i style={{fontSize: "3rem"}} className="fa fa-star" aria-hidden="true"></i>
 }
 
-function ResultComp3(props) {
-  const { classes, ratingChanged, lastrate } = props;
+const ResultComp3 = ({ classes, ratingChanged, lastrate }) => {
   return (
     <Card className={classes.card}>
           <div>
