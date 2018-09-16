@@ -20,7 +20,8 @@ constructor() {
       search: '',
       CardSwitch: true,
       discoverStart: false, //default false
-      resultArray: '', //real final result top 5 fruits info //need to update to discover menu
+      userObj : '',
+      resultArray: [], //real final result top 5 fruits info //need to update to discover menu
       lastrate: 0
     }
   }
@@ -73,9 +74,19 @@ clickMain = (route) => {
   } else if (route === "person") {
     this.setState({route: route});
   } else if (route === "logout") {
-    this.setState({route : 'login', input_email: '', email_valid: '', value: 0, fruitlist: '', search: ''});
+    this.setState({route : 'login', input_email: '', email_valid: '', value: 0, search: ''});
+    this.defaultFruitlist();
   }  
 };
+
+defaultFruitlist = () => {
+  let list = this.state.fruitlist;
+  for (let i = 0; i <list.length ; i++) {
+    list[i].rate = 0;
+  }
+  this.setState({fruitlist:list})
+}
+
 
 //app top menu handler
 //value 0 = first menu
@@ -147,11 +158,9 @@ createNewObj = (fruitlistCopy) => {
     let rate = fruitlistCopy[i].rate; //1 to 5 in number
     convertedfruitlist[name] = rate;
   }
-
+  
   userObj["email"] = this.state.input_email;
   userObj["rate"] = convertedfruitlist;
-  // this.setState({userObj:userObj});
-
   let updated = new Date();
   fetch(port + 'rating', {
     method: 'post',
@@ -169,6 +178,9 @@ createNewObj = (fruitlistCopy) => {
     // console.log(res);
     this.calculateKNN(userObj, res)
     })
+
+  //store it in state and compare later when user comes back.
+  this.setState({userObj});
 }
 
 calculateKNN = (userObj, resonseFromServer) => {
