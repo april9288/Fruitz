@@ -4,6 +4,10 @@ import Main from './Components/Main';
 import {fruitlist} from './Data/fruitlist';
 // import sampleRating from './Data/sampleRating.json';
 
+const port1 = "https://fruitzapi.herokuapp.com/";
+const port2 = "http://localhost:3001/";
+const port = port1;
+
 class App extends Component {
 constructor() {
     super();
@@ -90,7 +94,7 @@ ratingChanged = (nextValue, prevValue, name) => {
     this.setState({lastrate: nextValue});
 
     let email = this.state.input_email;
-    fetch('http://localhost:3001/lastrate', {
+    fetch(port + 'lastrate', {
       method: 'post',
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify({
@@ -149,7 +153,7 @@ createNewObj = (fruitlistCopy) => {
   // this.setState({userObj:userObj});
 
   let updated = new Date();
-  fetch('http://localhost:3001/rating', {
+  fetch(port + 'rating', {
     method: 'post',
     headers: {'Content-Type' : 'application/json'},
     body: JSON.stringify({
