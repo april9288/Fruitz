@@ -1,34 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import OrangePic from './orange.jpg';
 import StarRatingComponent from 'react-star-rating-component';
 
 const styles = {
   card: {
     width: 345,
     height: 200,
-    margin: "1rem 0",
+    margin: "4rem 0 0 0",
     display: "flow-root",
-    backgroundImage: "linear-gradient(266deg, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2) 50%), url(" + OrangePic + ")",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundBlendMode: "multiply"
   },
   header: {
     fontFamily: "'Baloo Tammudu'!important",
-    color: "white",
+    color: "black",
     fontSize: "1.2rem",
     display: "block",
     margin: "1rem 0 0 0"
   },
   text: {
-    color: "white",
+    color: "black",
     display: "block",
-    margin: "0 0 1rem 0"
+    margin: "1rem 0 1rem 0"
   },
+  line: {
+    background: "#fc00ff", /* fallback for old browsers */
+    background: "-webkit-linear-gradient(to right, #00dbde, #fc00ff)",  /* Chrome 10-25, Safari 5.1-6 */
+    background: "linear-gradient(to right, #00dbde, #fc00ff)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 2,
+    border: "none",
+    display: "block",
+    width: "100%",
+  }
 };
 
 const StarRendering = (nextValue, prevValue, name) => {
@@ -37,9 +39,10 @@ const StarRendering = (nextValue, prevValue, name) => {
 
 const ResultComp3 = ({ classes, ratingChanged, lastrate }) => {
   return (
-    <Card className={classes.card}>
-          <div>
-            <p className={classes.header}>Please rate our recommendation</p>
+    <div className={classes.card}>
+          <div>     
+          <span className = {classes.line}></span>
+            <p className={classes.header}>Rate our suggestions</p>
             <StarRatingComponent 
                 name={"lastrate"}
                 starCount={5}
@@ -47,9 +50,9 @@ const ResultComp3 = ({ classes, ratingChanged, lastrate }) => {
                 onStarClick={ratingChanged}
                 renderStarIcon={()=>StarRendering()}
               />
-            <p className={classes.text}>How do you like our recommendation? The more user data we gather, the better we can recommend. Thank you</p>
+            <p className={classes.text}>The more data we gather, the better we can suggest. Thank you</p>
           </div>
-    </Card>
+    </div>
   );
 }
 

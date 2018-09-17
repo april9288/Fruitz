@@ -34,7 +34,7 @@ const Discover = ({discoverStart, result, ratingChanged, lastrate}) => {
 	return (
 		<div>
 			<div style={topbar}>
-						<p style={headtext}>Discover</p>
+						<p style={headtext}>Suggestions</p>
 			</div>
 			<div style={style}>
 			{

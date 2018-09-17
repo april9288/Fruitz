@@ -8,7 +8,7 @@ const style = {
 	marginBottom: "75px",
 	marginTop: "70px",
 	width: "100%",
-    display: "inline-flex",
+    display: "inline-table",
     justifyContent: "center",
     maxWidth: 400,
 }

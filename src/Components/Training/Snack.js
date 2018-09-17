@@ -33,7 +33,7 @@ const Snack = ({ classes, snackClose, snackOpener }) => {
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={<span id="message-id">Please rate at least 5 items</span>}
+          message={<span id="message-id">Rate at least 5 items and hit Discover</span>}
           action={[
             <IconButton
               key="close"
