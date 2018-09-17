@@ -29,7 +29,7 @@ const headtext = {
     padding: "5px 0 0 30px",
 }
 
-const Discover = ({discoverStart, result, ratingChanged, lastrate}) => {
+const Discover = ({discoverStart, result, ratingChanged, lastrate, snackClose, snackOpenerD}) => {
 
 	return (
 		<div>
@@ -38,7 +38,7 @@ const Discover = ({discoverStart, result, ratingChanged, lastrate}) => {
 			</div>
 			<div style={style}>
 			{
-				(discoverStart) ? <DiscoverResult result={result} ratingChanged={ratingChanged} lastrate={lastrate}/> : <DiscoverError />
+				(discoverStart) ? <DiscoverResult result={result} ratingChanged={ratingChanged} lastrate={lastrate} snackClose={snackClose} snackOpenerD={snackOpenerD}/> : <DiscoverError />
 			}
 			</div>
 		</div>

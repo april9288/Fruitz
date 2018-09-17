@@ -23,6 +23,7 @@ constructor() {
       resultArray: [], //real final result top 5 fruits info //need to update to discover menu
       lastrate: 0,
       snackOpener: false,
+      snackOpenerD: false,
       fruitnews : ''
     }
   }
@@ -104,14 +105,14 @@ snackClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    this.setState({ snackOpener: false });
+    this.setState({ snackOpener: false, snackOpenerD: false });
   };
 
 //the most important part starts here
 ratingChanged = (nextValue, prevValue, name) => {
 
   if (name === 'lastrate') {
-    this.setState({lastrate: nextValue});
+    this.setState({lastrate: nextValue, snackOpenerD:true});
 
     let email = this.state.input_email;
     fetch(port + 'lastrate', {
@@ -137,8 +138,11 @@ ratingChanged = (nextValue, prevValue, name) => {
       this.setState({fruitlist:changedList});  
     }
   }
-
 }
+
+
+
+
 
 //when user clicks discover, then need to count number of rating
 checkRateCount = () => {
@@ -323,6 +327,7 @@ render() {
             lastrate = {this.state.lastrate}
             snackClose = {this.snackClose}
             snackOpener = {this.state.snackOpener}
+            snackOpenerD = {this.state.snackOpenerD}
             fruitnews={this.state.fruitnews}
           />);
     }
