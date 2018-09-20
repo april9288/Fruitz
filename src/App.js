@@ -300,8 +300,8 @@ euclideanSimilarity = (data1, data2) => {
 render() {
     //length : 0 or false
     let filteredFruit = this.state.fruitlist;
-    if (this.state.fruitlist.length >= 1) {
-      filteredFruit = this.state.fruitlist.filter(fruit=> {
+    if (filteredFruit) {
+      filteredFruit = filteredFruit.filter(fruit=> {
         return fruit.name.toLowerCase().includes(this.state.search.toLowerCase());
       })
     }
