@@ -19,18 +19,20 @@ const Login = ({input, click, Isvalid}) => {
 			<div className = 'login_container'>
 				<h2 className = 'logo'>Fruitz</h2>
 				<p id = 'sub_logo'>Discover your favorite fruits</p>
+				<form onSubmit={()=>click("main")}>
 				    <Card className = 'submit_card'>
-					        <input className = "emailinput" type = "email" placeholder = "Enter email" onChange={input}/>
+					        <input className = "emailinput" type = "email" placeholder = "Enter email" onChange={input} autofocus="true"/>
 				    		<span>{validation(Isvalid)}</span>
 				    </Card>
   
 					  <div>
 					      <Button variant="contained" 
 					      	      className="submit_btn"
-					      	      onClick={()=>click("main")}>
+					      	      >
 					        Login
 					      </Button>
 					  </div>
+				</form>
 				<div>beta 0.0.9</div>					
 			</div>
 			</div>

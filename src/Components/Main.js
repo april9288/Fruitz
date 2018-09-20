@@ -20,9 +20,6 @@ const tapmenu = {
     width: "100%",
 }
 
-
-const Main = ({value, handleChange, clickMain, route, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate, snackClose, snackOpener, snackOpenerD, fruitnews}) => {
-
 const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate, snackClose, snackOpener, snackOpenerD, fruitnews) => {
 	if (route === "main") {
 		return(<Home fruitnews={fruitnews}/>);
@@ -34,6 +31,9 @@ const routeFunction = (route, clickMain, searchInput, fruitlist, ratingChanged, 
 		return(<Person clickMain={clickMain} emailString={emailString} />);
 	}
 } 
+
+
+const Main = ({value, handleChange, clickMain, route, searchInput, fruitlist, ratingChanged, discoverStart, emailString, result, lastrate, snackClose, snackOpener, snackOpenerD, fruitnews}) => {
 
 	return (
 		<div className = 'main'> 

@@ -34,7 +34,8 @@ const headtext = {
 
 
 const Home = ({fruitnews}) => {
-	const newsList = fruitnews.articles.map((onenews, i) => {
+
+const newsList = fruitnews.articles.map((onenews, i) => {
 		let r1 = Math.floor(Math.random() * 255);
 		let r2 = Math.floor(Math.random() * 255);
 		let r3 = Math.floor(Math.random() * 255);
@@ -52,7 +53,7 @@ const Home = ({fruitnews}) => {
 			</div>
 			<div style = {style}>
 			{
-				(fruitnews !== '') ? newsList.sort((a, b) => 0.5 - Math.random()) : <CircularProgress color="secondary" thickness={3} size={50}/>
+				(fruitnews) ? newsList.sort((a, b) => 0.5 - Math.random()) : <CircularProgress color="secondary" thickness={3} size={50}/>
 			}
 			</div>
 		</div>
