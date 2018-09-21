@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import AppNewsCard from './AppNewsCard';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+import {connect} from 'react-redux';
+import {requestNews} from '../../actions';
 
 const style = {
 	display: "inline-flex",
@@ -32,20 +35,43 @@ const headtext = {
     padding: "5px 0 0 30px",
 }
 
+const mapStateToProps = (state) => {
+  return {
+    fruitNews : state.fruitNews,
+    isPending: state.isPending
+  }
+}
 
-const Home = ({fruitnews}) => {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onRequestNews: () => dispatch(requestNews())
+  }
+}
 
-const newsList = fruitnews.articles.map((onenews, i) => {
-		let r1 = Math.floor(Math.random() * 255);
-		let r2 = Math.floor(Math.random() * 255);
-		let r3 = Math.floor(Math.random() * 255);
-		let r = [r1, r2, r3];
-		return <AppNewsCard key = {onenews.url} 
-					        onenews = {onenews}
-					        rgb = {r}
-					        />;
-	});
+class Home extends Component {
 
+componentDidMount() {
+	this.props.onRequestNews();
+};
+
+newsListFunc = (fruitNews, isPending) => {
+	if (!isPending) {
+		const newsList = fruitNews.articles.map((onenews, i) => {
+			let r1 = Math.floor(Math.random() * 255);
+			let r2 = Math.floor(Math.random() * 255);
+			let r3 = Math.floor(Math.random() * 255);
+			let r = [r1, r2, r3];
+			return <AppNewsCard key = {onenews.url} 
+						        onenews = {onenews}
+						        rgb = {r}
+						        />;
+		});
+	return newsList.sort((a, b) => 0.5 - Math.random());
+	}
+}
+
+render(){
+	const {fruitNews, isPending} = this.props;
 	return (
 		<div>
 			<div style={topbar}>
@@ -53,11 +79,12 @@ const newsList = fruitnews.articles.map((onenews, i) => {
 			</div>
 			<div style = {style}>
 			{
-				(fruitnews) ? newsList.sort((a, b) => 0.5 - Math.random()) : <CircularProgress color="secondary" thickness={3} size={50}/>
+				(!isPending) ? this.newsListFunc(fruitNews, isPending) : <CircularProgress color="secondary" thickness={3} size={50}/>
 			}
 			</div>
 		</div>
 		);
+	}
 }
 
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

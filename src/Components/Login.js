@@ -23,7 +23,7 @@ const Login = ({input, click, Isvalid}) => {
 				<p id = 'sub_logo'>Discover your favorite fruits</p>
 				<form onSubmit={()=>click("main")}>
 				    <Card className = 'submit_card'>
-					        <input className = "emailinput" type = "email" placeholder = "Enter email" onChange={input} autofocus="true" required="true"/>
+					        <input className = "emailinput" type = "email" placeholder = "Enter email" onChange={input} autoFocus="true" required="true"/>
 				    		<span>{validation(Isvalid)}</span>
 				    </Card>
   

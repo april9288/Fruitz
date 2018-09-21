@@ -4,27 +4,10 @@ import Main from './Components/Main';
 import {fruitlist} from './Data/fruitlist';
 // import sampleRating from './Data/sampleRating.json';
 
-import {connect} from 'react-redux';
-import {requestNews} from './actions';
-
 const port1 = "https://fruitzapi.herokuapp.com/";
 // const port2 = "http://localhost:3001/";
 const port = port1;
 
-
-
-const mapStateToProps = (state) => {
-  return {
-    fruitNewss : state.fruitnews,
-    isPending: state.isPending
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onRequestNews: () => dispatch(requestNews())
-  }
-}
 
 class App extends Component {
 constructor() {
@@ -48,7 +31,7 @@ constructor() {
 //update list of fruit right after rendering
 componentDidMount() {
  this.setState({fruitlist: fruitlist}); 
- this.props.onRequestNews();
+
  };
 
 //check email field validation
@@ -313,9 +296,6 @@ euclideanSimilarity = (data1, data2) => {
 
 
 render() {
-
-    const {fruitNewss, isPending} = this.props;
-
     //length : 0 or false
     let filteredFruit = this.state.fruitlist;
     if (filteredFruit) {
@@ -346,11 +326,10 @@ render() {
             snackClose = {this.snackClose}
             snackOpener = {this.state.snackOpener}
             snackOpenerD = {this.state.snackOpenerD}
-            fruitnews={fruitNewss}
           />);
     }
   }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
