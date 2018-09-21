@@ -4,10 +4,12 @@ import Card from '@material-ui/core/Card';
 import Background from './Photo/bg1.jpg';
 
 const validation = (Isvalid) => {
-	if (!Isvalid) {
+	if (Isvalid === false) {
 		return (<p className = "validationText" style={{color: "red"}}>invalid</p>);
-	} else {
+	} else if (Isvalid === true) {
 		return (<p className = "validationText" style={{color: "green"}}>valid</p>);
+	} else if ("default") {
+		return (<p className = "validationText" style={{color: "green"}}>required</p>);
 	}
 }
 
@@ -21,7 +23,7 @@ const Login = ({input, click, Isvalid}) => {
 				<p id = 'sub_logo'>Discover your favorite fruits</p>
 				<form onSubmit={()=>click("main")}>
 				    <Card className = 'submit_card'>
-					        <input className = "emailinput" type = "email" placeholder = "Enter email" onChange={input} autofocus="true"/>
+					        <input className = "emailinput" type = "email" placeholder = "Enter email" onChange={input} autofocus="true" required="true"/>
 				    		<span>{validation(Isvalid)}</span>
 				    </Card>
   

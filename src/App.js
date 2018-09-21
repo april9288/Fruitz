@@ -12,13 +12,13 @@ class App extends Component {
 constructor() {
     super();
     this.state = {
-      route: 'login', //defualt login
-      input_email: '', //default ''
-      email_valid: '',
-      value: 0, //defualt 0
+      route: 'login', //default => login
+      input_email: '', //default => ''
+      email_valid: "default", //default => default
+      value: 0, //default => 0
       fruitlist: '',
       search: '',
-      discoverStart: false, //default false
+      discoverStart: false, //default => false
       userObj : '',
       resultArray: [], //real final result top 5 fruits info //need to update to discover menu
       lastrate: 0,
@@ -28,10 +28,9 @@ constructor() {
     }
   }
 
-
 //update list of fruit right after rendering
 componentDidMount() {
- this.setState({email_valid: true, fruitlist: fruitlist}); 
+ this.setState({fruitlist: fruitlist}); 
  fetch('https://newsapi.org/v2/everything?q=fruits&apiKey=ec83633a1a744267bd9e06786610348a')
       .then(response => response.json())
       .then(json => this.setState({fruitnews : json}))
@@ -61,8 +60,9 @@ searchInput = (event) => {
 
 //when click event happens in login.js
 click = (route) => {
-  if (this.state.email_valid === true && this.state.input_email.length >= 3){
-    this.setState({route: route});
+  let email_valid = this.state.email_valid;
+  if (email_valid){
+    this.setState({route});
   } else {
     this.setState({route: 'login'});
   }    
@@ -73,12 +73,12 @@ clickMain = (route) => {
   if (route === "main") {
     this.setState({route});
   } else if (route === "training") {
-    this.setState({route: route, search: '', snackOpener: true});
+    this.setState({route, search: '', snackOpener: true});
   } else if (route === "discover") {
-    this.setState({route: route});
+    this.setState({route});
     this.checkRateCount();
   } else if (route === "person") {
-    this.setState({route: route});
+    this.setState({route});
   } else if (route === "logout") {
     this.setState({route : 'login', input_email: '', email_valid: '', value: 0, search: ''});
     this.defaultFruitlist();
