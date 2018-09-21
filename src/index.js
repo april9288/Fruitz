@@ -4,5 +4,17 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import { requestNews } from './reducers';
+
+const logger = createLogger();
+// const rootReducers = combineReducers({})
+const store = createStore(requestNews, applyMiddleware(thunkMiddleware, logger));
+
+ReactDOM.render(<Provider store = {store}>
+				  <App />
+				</Provider>, document.getElementById('root'));
 registerServiceWorker();

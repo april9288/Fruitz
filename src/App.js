@@ -4,9 +4,27 @@ import Main from './Components/Main';
 import {fruitlist} from './Data/fruitlist';
 // import sampleRating from './Data/sampleRating.json';
 
+import {connect} from 'react-redux';
+import {requestNews} from './actions';
+
 const port1 = "https://fruitzapi.herokuapp.com/";
 // const port2 = "http://localhost:3001/";
 const port = port1;
+
+
+
+const mapStateToProps = (state) => {
+  return {
+    fruitNewss : state.fruitnews,
+    isPending: state.isPending
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onRequestNews: () => dispatch(requestNews())
+  }
+}
 
 class App extends Component {
 constructor() {
@@ -24,16 +42,13 @@ constructor() {
       lastrate: 0,
       snackOpener: false,
       snackOpenerD: false,
-      fruitnews : ''
     }
   }
 
 //update list of fruit right after rendering
 componentDidMount() {
  this.setState({fruitlist: fruitlist}); 
- fetch('https://newsapi.org/v2/everything?q=fruits&apiKey=ec83633a1a744267bd9e06786610348a')
-      .then(response => response.json())
-      .then(json => this.setState({fruitnews : json}))
+ this.props.onRequestNews();
  };
 
 //check email field validation
@@ -86,11 +101,11 @@ clickMain = (route) => {
 };
 
 defaultFruitlist = () => {
-  let list = this.state.fruitlist;
-  for (let i = 0; i <list.length ; i++) {
-    list[i].rate = 0;
+  let fruitlist = this.state.fruitlist;
+  for (let i = 0; i <fruitlist.length ; i++) {
+    fruitlist[i].rate = 0;
   }
-  this.setState({fruitlist:list})
+  this.setState({fruitlist})
 }
 
 
@@ -298,6 +313,9 @@ euclideanSimilarity = (data1, data2) => {
 
 
 render() {
+
+    const {fruitNewss, isPending} = this.props;
+
     //length : 0 or false
     let filteredFruit = this.state.fruitlist;
     if (filteredFruit) {
@@ -328,10 +346,11 @@ render() {
             snackClose = {this.snackClose}
             snackOpener = {this.state.snackOpener}
             snackOpenerD = {this.state.snackOpenerD}
-            fruitnews={this.state.fruitnews}
+            fruitnews={fruitNewss}
           />);
     }
   }
 }
 
-export default App;
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
